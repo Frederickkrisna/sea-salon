@@ -8,7 +8,7 @@ Card.propTypes = {
 };
 
   return (
-    <div className="max-w-sm rounded overflow-hidden shadow-lg bg-white">
+    <div className="cards max-w-sm rounded overflow-hidden shadow-lg bg-white">
       <img className="w-full" src={imageUrl} alt="Card image" />
       <div className="px-6 py-4">
         <div className="font-bold text-xl mb-5 mt-5 text-black">{title}</div>

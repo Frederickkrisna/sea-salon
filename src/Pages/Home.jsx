@@ -7,13 +7,13 @@ function Home() {
   return (
     <div className='flex flex-col mih-h-screen'>
       <Navbar />
-        <div className="flex flex-grow flex-col bg-background bg-gradient-to-b from-black from-20% to-background">
+        <div className="flex flex-grow flex-col bg-background bg-gradient-to-b from-background from-20% to-gray-400">
         <div className="flex flex-row items-center justify-center">
           <div className='flex justify-between'>
-            <img src={yujin}/>
+            <img className='yujinn'src={yujin}/>
             <div>
-            <h1 className="text-8xl text-primary mx-[14vh] mt-[24vh] whitespace-nowrap">SEA Salon</h1>
-            <p className="text-sm font-medium text-primary mx-[15vh] mt-[2vh] whitespace-nowrap">
+            <h1 className="text-8xl text-primary mx-[14vh] mt-[24vh] whitespace-nowrap text-white">SEA Salon</h1>
+            <p className="text-sm font-medium text-primary mx-[15vh] mt-[2vh] whitespace-nowrap text-white">
               “Beauty and Elegance Redefined”
             </p>
             </div>
@@ -21,7 +21,7 @@ function Home() {
         </div>
         </div>
 
-          <div className='relative mt-15 border-b bg-gray-400 mih-h-[800px]'>
+          <div className='relative mt-15 border-b bg-gray-200 mih-h-[800px]'>
             <div className='text-center mt-[15vh]'>
               <h2 className='text-3xl sm:text-5xl lg:text-6xl mt-10 lg:mt-20 tracking-wide text-black'>Our Services</h2>
               <div className="flex justify-between items-center mx-[10vh] my-[10vh] mt-[10vh] mb-[20vh]">
