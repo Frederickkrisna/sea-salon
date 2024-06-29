@@ -1,27 +1,17 @@
-import React, { useEffect, useContext } from 'react';
-import { useNavigate } from "react-router-dom"
+import React from 'react';
 import Navbar from '../components/Navbar';
 import yujin from "../assets/Yujin.png";
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import { motion, useInView } from 'framer-motion';
-import { AuthContext } from '../Context/AuthContext';
 
 const Home = () => {
   const servicesRef = React.useRef(null);
   const isInView = useInView(servicesRef, { once: true, amount: 0.1 });
 
-  const { user, userData } = useContext(AuthContext);
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    if (!user) {
-      navigate("/Register");
-    }});
-
   return (
     <div className='flex flex-col min-h-screen'>
-      <Navbar />
+      <Navbar active="home"/>
       <div className="flex flex-grow flex-col bg-background bg-gradient-to-b from-background from-20% to-gray-400">
         <div className="flex flex-row items-center justify-center">
           <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className='flex justify-between'>

@@ -14,9 +14,9 @@ const Register = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [email, setEmail] = useState("");
     const [loading, setLoading] = useState(false);
-
+    
     const navigate = useNavigate();
-  
+
     const storeUserData = async () => {
       try {
         await setDoc(doc(db, "users", email),{
@@ -34,13 +34,20 @@ const Register = () => {
     }
   
     const handleSubmit = async () => {
-        navigate("/");
       if (name === "" || phoneNumber === "" || password === "" || confirmPassword === "" || email === "") {
-        alert("Please fill in all fields!");
+        alert("Please fill in all fields")
+        return;
+      }
+      if (!email.endsWith("@gmail.com")) {
+        alert("Invalid email! (example@gmail.com)");
+        return;
+      }
+      if(password.length < 6) {
+        alert("Your password must be at least 6 characters")
         return;
       }
       if (password !== confirmPassword) {
-        alert("Password and confirm password do not match!");
+        alert("Your passwords do not match")
         return;
       }
       try {
@@ -64,7 +71,7 @@ const Register = () => {
     <div className='flex flex-col min-h-screen'>
       <div className="bg-gray-300 min-h-screen py-8">
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-8 text-center text-black">Register</h1>
+          <h1 className="text-3xl font-bold mb-8 mt-10 text-center text-black">Register</h1>
 
           {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
@@ -138,13 +145,20 @@ const Register = () => {
                 className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100 text-gray-800"
               />
             </div>
-            <button
-              onClick={() => handleSubmit()} 
-              type="submit"
-              className="w-full bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 py-2 px-4 rounded"
+
+            <div className="flex pt-3 pb-3 justify-end">
+            <div className="pr-2 text-sm">Already have an account?</div>
+            <button onClick={() => navigate("/login")} className="text-black text-sm underline">
+              Login here
+            </button>
+            </div>
+            <div
+              onClick={() => handleSubmit()}
+              type="button"
+              className="w-full text-center hover:cursor-pointer bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 py-2 px-4 rounded"
             >
               Register
-            </button>
+            </div>
           </form>
         </motion.div>
       </div>

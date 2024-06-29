@@ -1,9 +1,10 @@
 import Navbar from '../components/Navbar';
-import { useState } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { ScaleLoader } from "react-spinners"
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion';
+import { AuthContext } from '../Context/AuthContext';
 
 const Review = () => {
   const [tempRating, setTempRating] = useState(0);
@@ -11,9 +12,10 @@ const Review = () => {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  
+  const { user } = useContext(AuthContext);
+
   const navigate = useNavigate();
-  
+
   const postReview = async () => {
     try {
       setLoading(true);
@@ -34,10 +36,18 @@ const Review = () => {
     await postReview();
   }
 
+  useEffect(() => {
+    if(!user){
+      alert("Please login first")
+      navigate("/");
+      return;
+    }
+  },[]);
+
   return (
     <div className='flex flex-col min-h-screen'>
-      <Navbar />
-      <div className="min-h-screen bg-gray-300">
+      <Navbar active="review"/>
+      <div className="flex flex-col flex-grow bg-gray-300">
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="flex flex-col items-center justify-center py-10">
           <h1 className="text-4xl font-bold text-gray-800">We'd love to hear about your experience!</h1>
           <p className="text-lg mt-2 text-gray-600">Your feedback helps us improve our services.</p>
