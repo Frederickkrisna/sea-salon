@@ -4,7 +4,7 @@ const Navbar = () => {
           <div className="container px-4 mx-auto relative text-sm">
               <div className="flex justify-between items-center ">
                   <div className="flex items-center flex-shrink-0">
-                      <span className="text-xl tracking-tight ">SEA Salon</span>
+                      <a href="/" className="text-xl tracking-tight ">SEA Salon</a>
                   </div>
                   <ul className="hidden lg:flex ml-14 space-x-12">
                       <li>
