@@ -93,7 +93,7 @@ const Review = () => {
                 className="mt-4 w-full px-4 py-2 bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 rounded-lg"
               >
                 {loading ? (
-                  <ScaleLoader color="white" height={16} />
+                  <ScaleLoader color="white" height={9} />
                 ) : (
                   "Submit"
                 )}

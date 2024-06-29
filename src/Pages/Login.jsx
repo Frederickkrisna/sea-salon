@@ -28,7 +28,7 @@ const { setUserData} = useContext(AuthContext);
       navigate("/");
     } catch (error) {
       console.error(error);
-      alert(error.message.slice(10));
+      alert("Invalid email or password!");
     } finally {
       setLoading(false);
     }
@@ -52,9 +52,9 @@ const { setUserData} = useContext(AuthContext);
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <div className="bg-gray-300 min-h-screen py-8">
+      <div className="bg-gray-300 flex flex-col flex-grow py-8">
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-8 mt-10 text-center text-black">Login</h1>
+          <h1 className="text-3xl font-bold mb-5 mt-10 text-center text-black">Login</h1>
 
           {loading && (
             <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
@@ -92,9 +92,9 @@ const { setUserData} = useContext(AuthContext);
 
             <div className="flex pt-3 pb-3">
             <div className="pr-2 text-sm">Don't have an account? </div>
-            <button onClick={() => navigate("/register")} className="text-black text-sm underline">
+            <div type="button" onClick={() => navigate("/register")} className="text-black text-sm underline hover:cursor-pointer">
               Register here
-            </button>
+            </div>
           </div>
 
             <div
@@ -103,7 +103,13 @@ const { setUserData} = useContext(AuthContext);
             >
               Login
             </div>
-            
+            <div
+              onClick={() => navigate("/")}
+              type="button"
+              className="w-full mt-2 text-center hover:cursor-pointer border-[0.3vh] bg-white text-black hover:bg-gray-200 focus:outline focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 py-2 px-4 rounded"
+            >
+              Cancel
+            </div>
           </form>
         </motion.div>
       </div>

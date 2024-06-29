@@ -12,7 +12,7 @@ function App() {
   }, []);
   return (
     <>
-      <Router>
+      <Router basename="/sea-salon">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />

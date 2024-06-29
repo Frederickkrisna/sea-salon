@@ -25,7 +25,7 @@ const Home = () => {
           </motion.div>
         </div>
       </div>
-
+      
       <div className='relative mt-15 border-b bg-gray-200 min-h-[800px]'>
         <div ref={servicesRef} className='text-center mt-[15vh]'>
           <motion.h2 

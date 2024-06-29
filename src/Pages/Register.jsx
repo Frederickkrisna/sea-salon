@@ -69,9 +69,9 @@ const Register = () => {
 
   return (
     <div className='flex flex-col min-h-screen'>
-      <div className="bg-gray-300 min-h-screen py-8">
+      <div className="bg-gray-300 flex flex-col flex-grow py-8">
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="container mx-auto px-4">
-          <h1 className="text-3xl font-bold mb-8 mt-10 text-center text-black">Register</h1>
+          <h1 className="text-3xl font-bold mb-5 text-center text-black">Register</h1>
 
           {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-opacity-50 bg-black">
@@ -148,9 +148,9 @@ const Register = () => {
 
             <div className="flex pt-3 pb-3 justify-end">
             <div className="pr-2 text-sm">Already have an account?</div>
-            <button onClick={() => navigate("/login")} className="text-black text-sm underline">
+            <div type="button" onClick={() => navigate("/login")} className="text-black text-sm underline hover:cursor-pointer">
               Login here
-            </button>
+            </div>
             </div>
             <div
               onClick={() => handleSubmit()}
@@ -158,6 +158,13 @@ const Register = () => {
               className="w-full text-center hover:cursor-pointer bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 py-2 px-4 rounded"
             >
               Register
+            </div>
+            <div
+              onClick={() => navigate("/")}
+              type="button"
+              className="w-full mt-2 text-center hover:cursor-pointer border-[0.3vh] bg-white text-black hover:bg-gray-200 focus:outline focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 py-2 px-4 rounded"
+            >
+              Cancel
             </div>
           </form>
         </motion.div>
