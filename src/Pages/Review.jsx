@@ -17,7 +17,6 @@ const Review = () => {
   const postReview = async () => {
     try {
       setLoading(true);
-      // Simulating a delay for submission
       await new Promise(resolve => setTimeout(resolve, 2000));
       setSubmitted(true);
       setTimeout(() => {
@@ -38,7 +37,7 @@ const Review = () => {
   return (
     <div className='flex flex-col min-h-screen'>
       <Navbar />
-      <div className="min-h-screen bg-gray-100">
+      <div className="min-h-screen bg-gray-300">
         <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="flex flex-col items-center justify-center py-10">
           <h1 className="text-4xl font-bold text-gray-800">We'd love to hear about your experience!</h1>
           <p className="text-lg mt-2 text-gray-600">Your feedback helps us improve our services.</p>

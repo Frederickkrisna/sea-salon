@@ -22,7 +22,7 @@ const ReservationForm = () => {
   return (
     <div className='flex flex-col mih-h-screen'>
       <Navbar />
-    <div className="bg-gray-200 min-h-screen py-8">
+    <div className="bg-gray-300 min-h-screen py-8">
       <motion.div initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }} className="container mx-auto px-4">
         <h1 className="text-3xl font-bold mb-8 text-center text-black">Reservation Form</h1>
         <form onSubmit={handleSubmit} className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">

@@ -1,13 +1,23 @@
-import React from 'react';
+import React, { useEffect, useContext } from 'react';
+import { useNavigate } from "react-router-dom"
 import Navbar from '../components/Navbar';
 import yujin from "../assets/Yujin.png";
 import Card from '../components/Card';
 import Footer from '../components/Footer';
 import { motion, useInView } from 'framer-motion';
+import { AuthContext } from '../Context/AuthContext';
 
 const Home = () => {
   const servicesRef = React.useRef(null);
   const isInView = useInView(servicesRef, { once: true, amount: 0.1 });
+
+  const { user, userData } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate("/Register");
+    }});
 
   return (
     <div className='flex flex-col min-h-screen'>
