@@ -11,9 +11,9 @@ const ReservationForm = () => {
   const [name, setName] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
   const [serviceType, setServiceType] = useState('');
-  const [times, setTimes] = useState('');
-  const [dates, setDates] = useState('');
-  const [branches, setBranches] = useState('');
+  const [reservationTime, setreservationTime] = useState('');
+  const [reservationDate, setreservationDate] = useState('');
+  const [branch, setBranch] = useState('');
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const { user } = useContext(AuthContext);
@@ -39,23 +39,23 @@ const ReservationForm = () => {
   const postReservation = async () => {
     try {
       setLoading(true);
-      const reviewData = await getReservationData();
-      if (reviewData) {
-        const currentReviews = Array.isArray(reviewData.review) ? reviewData.review : [];
-        const newReview = { 
+      const reservationData = await getReservationData();
+      if (reservationData) {
+        const currentReservation = Array.isArray(reservationData.reservation) ? reservationData.reservation : [];
+        const newReservation = { 
           time: new Date().toLocaleString(),
-          times: times,
-          dates: dates,
+          reservationTime: reservationTime,
+          reservationDate: reservationDate,
           serviceType: serviceType,
-          branches: branches,
+          branch: branch,
           phoneNumber: phoneNumber,
           name: name 
         };
-        const newReviewData = {
-          review: [...currentReviews, newReview]
+        const newReservationData = {
+          reservation: [...currentReservation, newReservation]
         };
         await updateDoc(doc(db, "datas", "reservation"), {
-          review: newReviewData.review,
+          reservation: newReservationData.reservation,
         });
         setSubmitted(true);
         setTimeout(() => {
@@ -73,7 +73,7 @@ const ReservationForm = () => {
   }
 
   const handleSubmit = async () => {
-    if (name === "" || phoneNumber === "" || branches === "" | serviceType === "" | dates === "" || times === "") {
+    if (name === "" || phoneNumber === "" || branch === "" | serviceType === "" | reservationDate === "" || reservationTime === "") {
 
       alert("Please fill in all fields!");
       return;
@@ -123,13 +123,13 @@ const ReservationForm = () => {
               />
           </div>
           <div className="mb-3">
-            <label htmlFor="branches" className="block text-sm font-medium text-gray-700">
+            <label htmlFor="branch" className="block text-sm font-medium text-gray-700">
               Branch Location
             </label>
             <select
-              id="branches"
-              value={branches}
-              onChange={(e) => setBranches(e.target.value)}
+              id="branch"
+              value={branch}
+              onChange={(e) => setBranch(e.target.value)}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100 text-gray-800"
               >
@@ -157,27 +157,27 @@ const ReservationForm = () => {
             </select>
           </div>
           <div className="mb-3">
-            <label htmlFor="date" className="block text-sm font-medium text-gray-700">
-              Date
+            <label htmlFor="reservationDate" className="block text-sm font-medium text-gray-700">
+              Reservation Date
             </label>
             <input
               type="date"
-              id="dates"
-              value={dates}
-              onChange={(e) => setDates(e.target.value)}
+              id="reservationDate"
+              value={reservationDate}
+              onChange={(e) => setreservationDate(e.target.value)}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100 text-gray-800"
               />
           </div>
           <div className="mb-3">
-            <label htmlFor="time" className="block text-sm font-medium text-gray-700">
-              Time
+            <label htmlFor="reservationTime" className="block text-sm font-medium text-gray-700">
+              Reservation Time
             </label>
             <input
               type="time"
-              id="Times"
-              value={times}
-              onChange={(e) => setTimes(e.target.value)}
+              id="reservationTime"
+              value={reservationTime}
+              onChange={(e) => setreservationTime(e.target.value)}
               required
               className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm bg-gray-100 text-gray-800"
               />
