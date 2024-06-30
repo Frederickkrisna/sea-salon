@@ -1,10 +1,12 @@
 import Navbar from '../components/Navbar';
 import { useState, useContext, useEffect } from 'react';
-import { ScaleLoader } from "react-spinners"
+import { PulseLoader } from "react-spinners"
 import { FaStar } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { motion } from 'framer-motion';
 import { AuthContext } from '../Context/AuthContext';
+import { doc, getDoc, updateDoc } from 'firebase/firestore';
+import { db } from '../FirebaseSetup';
 
 const Review = () => {
   const [tempRating, setTempRating] = useState(0);
@@ -12,21 +14,54 @@ const Review = () => {
   const [comment, setComment] = useState("");
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
-  const { user } = useContext(AuthContext);
+  const { user, userData } = useContext(AuthContext);
 
   const navigate = useNavigate();
+
+  const getReviewData = async () => {
+    try {
+      const docRef = doc(db, "datas", "review");
+      const docSnap = await getDoc(docRef);
+      if (docSnap.exists()) {
+        return docSnap.data();
+      } else {
+        console.log("Data does not exist in database!");
+        return null;
+      }
+    } catch (e) {
+      console.error("Error getting document:", e);
+      return null;
+    }
+  };
 
   const postReview = async () => {
     try {
       setLoading(true);
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      setSubmitted(true);
-      setTimeout(() => {
-        setSubmitted(false);
-        navigate("/");
-      }, 3000);
+      const reviewData = await getReviewData();
+      if (reviewData) {
+        const currentReviews = Array.isArray(reviewData.review) ? reviewData.review : [];
+        const newReview = { 
+          time: new Date().toLocaleString(), 
+          rating: rating, 
+          comment: comment, 
+          name: userData.name 
+        };
+        const newReviewData = {
+          review: [...currentReviews, newReview]
+        };
+        await updateDoc(doc(db, "datas", "review"), {
+          review: newReviewData.review,
+        });
+        setSubmitted(true);
+        setTimeout(() => {
+          setSubmitted(false);
+          navigate("/");
+        }, 3000);
+      } else {
+        console.log("Data does not exist in database!");
+      }
     } catch (e) {
-      console.error("Error posting review:", e);
+      console.error("Error getting document:", e);
     } finally {
       setLoading(false);
     }
@@ -92,18 +127,15 @@ const Review = () => {
                 onClick={handleSubmit}
                 className="mt-4 w-full px-4 py-2 bg-black text-white hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-200 focus:ring-opacity-50 rounded-lg"
               >
-                {loading ? (
-                  <ScaleLoader color="white" height={9} />
-                ) : (
-                  "Submit"
-                )}
+                  Submit
               </button>
             </motion.div>
           )}
 
           {submitted && (
-            <div className="absolute inset-0 flex items-center justify-center bg-gray-900 bg-opacity-50 text-white text-2xl font-semibold">
+            <div className="absolute inset-0 flex flex-col items-center justify-center bg-gray-900 bg-opacity-50 text-white text-2xl font-semibold space-y-5">
               <div>Thank you for your review! You will be redirected shortly.</div>
+              <PulseLoader loading={submitted} color="white" />
             </div>
           )}
         </motion.div>

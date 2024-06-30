@@ -45,12 +45,13 @@ const Navbar = (props) => {
                   </div>
 
                 {!user ? (
-                <div className="flex items-center flex-shrink-0 w-[15vh] justify-end">
+                <div className="flex flex-row items-center flex-shrink-0 w-[15vh] justify-end">
                     <div className="hover:cursor-pointer hover:bg-gray-100 tracking-tight border-[0.4vh] px-3 py-2 rounded-md border-black text-black" onClick={() => handleClick("/login")}>Login</div>
                 </div>
                 ) :
                 (
                     <div className="flex items-center flex-shrink-0 w-[15vh] justify-end">
+                      <h2 className="whitespace-nowrap mr-[3vh]">{userData.name} - {userData.role}</h2>
                     <div className="hover:cursor-pointer hover:bg-red-100 tracking-tight border-[0.4vh] px-3 py-2 rounded-md  border-red-600 text-red-600" onClick={() => signOut()}>Logout</div>
                 </div>
                 )}

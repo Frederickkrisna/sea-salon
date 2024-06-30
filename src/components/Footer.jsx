@@ -17,16 +17,19 @@ const Footer = () => {
             </ul>
           </div>
           <div>
-            <h2 className="text-xl font-bold mb-2">Opening Hours :</h2>
+            <h2 className="text-xl font-bold mb-2">Operating Hours :</h2>
             <ul>
               <li className="mb-2">
-                Monday - Friday : 9 AM - 6 PM
+                Monday - Friday : 9 AM - 9 PM
               </li>
               <li className="mb-2">
-                Saturday : 10 AM - 4 PM
+                Saturday : 9 AM - 6 PM
               </li>
               <li className="mb-2">
-                Sunday : Closed
+                Sunday : 10 AM - 4 PM
+              </li>
+              <li className="mb-2">
+                Note : Operating hours may vary due to holidays
               </li>
             </ul>
           </div>
