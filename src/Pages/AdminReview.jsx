@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
+import { motion } from 'framer-motion';
 
 const AdminReview = () => {
   const [reviewData, setReviewData] = useState([]);
@@ -89,7 +90,7 @@ const AdminReview = () => {
                 <div className="col-span-full text-center text-gray-500">No reviews available</div>
               ) : (
                 filteredData.map((review, index) => (
-                  <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+                  <motion.div whileHover={{scale: 1.1}} key={index} className="bg-white p-6 rounded-lg shadow-lg">
                     <h2 className="text-xl font-semibold mb-2">{review.name}</h2>
                     <div className="flex items-center mb-4">
                       {Array(review.rating).fill().map((_, i) => (
@@ -101,7 +102,7 @@ const AdminReview = () => {
                     </div>
                     <p className="text-gray-700 mb-4">{review.comment}</p>
                     <p className="text-gray-500 text-sm">Time: {review.time}</p>
-                  </div>
+                  </motion.div>
                 ))
               )}
             </div>
