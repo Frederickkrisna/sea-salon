@@ -5,6 +5,8 @@ import Reservation from "./Pages/Reservation";
 import Register from "./Pages/Register";
 import Login from "./Pages/Login";
 import { useEffect } from "react";
+import AdminReview from "./Pages/AdminReview";
+import AdminReservation from "./Pages/AdminReservation";
 
 function App() {
   useEffect(() => {
@@ -19,6 +21,8 @@ function App() {
           <Route path="/review" element={<Review />} />
           <Route path="/reservation" element={<Reservation />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/adminReview" element={<AdminReview />} />
+          <Route path="/adminReservation" element={<AdminReservation />} />
         </Routes>
       </Router>
     </>

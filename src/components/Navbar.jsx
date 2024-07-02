@@ -30,7 +30,22 @@ const Navbar = (props) => {
                   <div className="flex items-center flex-shrink-0 w-[15vh]">
                       <button className="tracking-tight" onClick={() => handleClick("/")}>SEA Salon</button>
                   </div>
-                  <div className="flex flex-grow justify-center">
+                  {userData.role === "Admin" ? (
+                    <div className="flex flex-grow justify-center">
+                    <ul className="hidden lg:flex ml-14 space-x-5">
+                        <li>
+                            <button className={`rounded-full py-[0.75vh] px-[2.5vh] hover:bg-gray-200 ${props.active === 'home' && 'font-bold'}`} onClick={() => handleClick("/")}>Home</button>
+                        </li>
+                        <li>
+                            <button className={`rounded-full py-[0.75vh] px-[2.5vh] hover:bg-gray-200 ${props.active === 'adminReview' && 'font-bold'}`} onClick={() => handleClick("/adminReview")}>View Review</button>
+                        </li>
+                        <li>
+                            <button className={`rounded-full py-[0.75vh] px-[2.5vh] hover:bg-gray-200 ${props.active === 'adminReservation' && 'font-bold'}`} onClick={() => handleClick("/adminReservation")}>View Reservation</button>
+                        </li>
+                    </ul>
+                    </div>
+                  ) : (
+                    <div className="flex flex-grow justify-center">
                   <ul className="hidden lg:flex ml-14 space-x-5">
                       <li>
                           <button className={`rounded-full py-[0.75vh] px-[2.5vh] hover:bg-gray-200 ${props.active === 'home' && 'font-bold'}`} onClick={() => handleClick("/")}>Home</button>
@@ -43,6 +58,7 @@ const Navbar = (props) => {
                       </li>
                   </ul>
                   </div>
+                  )}
 
                 {!user ? (
                 <div className="flex flex-row items-center flex-shrink-0 w-[15vh] justify-end">

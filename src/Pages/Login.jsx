@@ -8,7 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { AuthContext } from '../Context/AuthContext';
 
 const Login = () => {
-const { setUserData} = useContext(AuthContext);
+  const { setUserData, setAdmin} = useContext(AuthContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
@@ -24,8 +24,12 @@ const { setUserData} = useContext(AuthContext);
       setLoading(true);
       await signInWithEmailAndPassword(auth, email, password);
       const userData = await getUser();
+      if (userData.role === "Admin") {
+        setAdmin(true);
+      }
       setUserData(userData);
       navigate("/");
+
     } catch (error) {
       console.error(error);
       alert("Invalid email or password!");
