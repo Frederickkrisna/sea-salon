@@ -30,6 +30,8 @@ const Navbar = (props) => {
                   <div className="flex items-center flex-shrink-0 w-[15vh]">
                       <button className="tracking-tight" onClick={() => handleClick("/")}>SEA Salon</button>
                   </div>
+                  {user && (
+                    <div>
                   {userData.role === "Admin" ? (
                     <div className="flex flex-grow justify-center">
                     <ul className="hidden lg:flex ml-14 space-x-5">
@@ -57,6 +59,8 @@ const Navbar = (props) => {
                           <button className={`rounded-full py-[0.75vh] px-[2.5vh] hover:bg-gray-200 ${props.active === 'reservation' && 'font-bold'}`} onClick={() => handleClick("/reservation")}>Reservation</button>
                       </li>
                   </ul>
+                  </div>
+                  )}
                   </div>
                   )}
 
